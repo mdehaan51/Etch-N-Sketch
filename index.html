@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div id = "topbar">
+		<button id = "clearbutton" type = button class = "btn btn-primary">Clear Board</button>
+	</div>
+	<div id = "grid-container">
+
+	</div>
+
+<style>
+body{
+	line-height: 0.0;
+}
+#topbar{
+	text-align: center;
+	margin-top: 10px;
+}
+
+#grid-container{
+
+	position: relative;
+	top: 20px;
+	margin: auto;
+	width: 960px;
+	height: 960px;
+	grid-row-gap: 0px;
+	grid-column-gap: 0px;
+	padding: 0;
+	
+
+}
+.grid{
+	outline: 1px solid black;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+.grid:hover{
+	background-color: black;
+}
+
+
+
+</style>
+
+<script>
+
+const gridContainer = document.getElementById("grid-container");
+var counter = 0
+
+$(document).ready(function(){
+createGrid(16);
+drawEffect();
+clearBoard();
+})
+
+function createGrid(num){
+	
+	console.log(gridContainer);
+	for(let rows = 0; rows < num; rows++){
+		console.log(rows);
+		for(let columns = 0; columns < num; columns++){
+			var cell = document.createElement("div");
+			cell.className = 'grid';
+			cell.style.width = 960/num + 'px';
+			cell.style.height = 960/num + 'px';
+			//cell.style.float = "left";
+			gridContainer.appendChild(cell);
+		};		
+	};
+};
+
+function drawEffect(){
+	$(".grid").mouseover(function(){
+		$(this).css("background-color", "black")
+	});
+
+}
+function clearBoard(){
+	$("#clearbutton").click(function(){
+		$(".grid").remove();
+		var size = prompt("How many squares per size?");
+		createGrid(size);
+		drawEffect();
+})};
+
+
+
+
+</script>
